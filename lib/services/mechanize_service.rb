@@ -1,12 +1,9 @@
 
 class MechanizeService
 
-  def initialize
-    @agent = WWW::Mechanize.new
-  end
-
   def search_google(query)
-    @agent.get("http://www.google.com") do |page|
+    agent = WWW::Mechanize.new
+    agent.get("http://www.google.com") do |page|
       result = page.form_with(:name => 'f') do |search|
         search.q = query.search_string
       end.submit
@@ -20,15 +17,17 @@ class MechanizeService
     unless link['href'].match(/pdf/i)
       p "scanning #{link['href']}..."
       begin
-      @agent.get(link['href']) do |new_page|
+      agent = WWW::Mechanize.new
+      agent.get(link['href']) do |new_page|
         new_page.body.scan(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i).each do |match|
-           matches << MailMatch.new(match)
+          matches << MailMatch.new(match)
         end
       end
       rescue Exception => ex
         p ex.message
       end
     end
+    return matches
   end
 
 end
