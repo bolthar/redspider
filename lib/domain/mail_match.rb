@@ -6,6 +6,7 @@ class MailMatch
 
   def initialize(email)
     @email = email
+    @score = 0
   end
 
   def evaluate(person_data)
