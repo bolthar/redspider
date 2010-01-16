@@ -19,7 +19,7 @@ class MechanizeService
       agent = WWW::Mechanize.new
       agent.get(link['href']) do |new_page|
         new_page.body.scan(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i).each do |match|
-          matches << MailMatch.new(match)
+          matches << Mailmatch.new(match)
         end
       end
       rescue Exception => ex

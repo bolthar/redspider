@@ -1,8 +1,12 @@
 
-class MailMatch
+class Mailmatch
+  include DataMapper::Resource
 
-  attr_reader :email
-  attr_reader :score
+  property :id,    Serial
+  property :email, String
+  property :score, Integer
+
+  belongs_to :professor
 
   def initialize(email)
     @email = email
