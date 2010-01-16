@@ -7,7 +7,6 @@ class MechanizeService
       result = page.form_with(:name => 'f') do |search|
         search.q = query.search_string
       end.submit
-      p result.body
       return result.search('//a[@class="l"]')
     end    
   end

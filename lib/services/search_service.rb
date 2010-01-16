@@ -12,7 +12,8 @@ class SearchService
     links.each do |link|
       threads << Thread.new do
         @mechanize.follow_link(link).each do |match|
-          matches << match
+          count = matches.select { |m| m.email == match.email}.length
+          matches << match if count == 0
         end
       end
       threads.map {|t| t.join }

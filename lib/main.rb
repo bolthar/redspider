@@ -11,3 +11,6 @@ query = Query.new(["Francesco", "Lissoni", "unibs"])
 searcher = SearchService.new
 matches = searcher.search(query)
 p matches
+matches.sort { |a,b| a.score <=> b.score }.reverse.each do |m|
+  p "#{m.score} - #{m.email}"
+end
