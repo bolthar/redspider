@@ -1,8 +1,10 @@
 
-class SearchService
+class SearchService < FreightService
+
+  service :mechanize
 
   def initialize
-    @mechanize = MechanizeService.new
+    super
     @email_regexp = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i
   end
 

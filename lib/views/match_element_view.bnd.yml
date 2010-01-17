@@ -1,0 +1,9 @@
+
+email:
+  property : text
+  path     : value.email
+
+score:
+  property : text
+  path     : value.score
+  converter: integer

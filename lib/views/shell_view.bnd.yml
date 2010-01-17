@@ -1,0 +1,8 @@
+
+details_region:
+  property : visible
+  path     : current
+
+status:
+  property : text
+  path     : status

@@ -1,0 +1,35 @@
+
+id:
+  property : text
+  path     : current.id
+  converter: integer
+
+name:
+  property : text
+  path     : current.name
+
+surname:
+  property : text
+  path     : current.surname
+
+year_of_birth:
+  property : text
+  path     : current.year_of_birth
+  converter: integer
+
+gender:
+  property : text
+  path     : current.gender
+
+affiliation:
+  property : text
+  path     : current.affiliation.code
+
+matches:
+  property : elements
+  path     : mailmatches
+  element  : match
+
+mail:
+  property : sensitive
+  path     : selected

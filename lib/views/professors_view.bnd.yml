@@ -1,0 +1,7 @@
+
+professor_list:
+  property : elements
+  path     : list
+  columns  :
+    - Name   : name
+    - Surname: surname

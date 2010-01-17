@@ -1,5 +1,5 @@
 
-class MechanizeService
+class MechanizeService < FreightService
 
   def search_google(query)
     agent = WWW::Mechanize.new
