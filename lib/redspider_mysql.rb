@@ -15,11 +15,15 @@ require File.dirname(__FILE__) + "/services/professor_service.rb"
 require File.dirname(__FILE__) + "/services/mailmatch_service.rb"
 require File.dirname(__FILE__) + "/services/batch_service.rb"
 
-#pass = ask("Enter mysql password :") { |q| q.echo = false}
+pass = ask("Enter mysql password :") { |q| q.echo = false}
 begin
-#  DataMapper.setup(:default, "mysql://root:#{pass}@localhost/redspider")
-  DataMapper.setup(:default, "mysql://root:kaserngatan4@localhost/redspider")
+  DataMapper.setup(:default, "mysql://root:#{pass}@localhost/redspider")
   DataMapper.auto_upgrade!
+rescue
+  print "wrong password!\n"
+  exit
+end
+begin
   #erases all previously found matches
   mailmatch = MailmatchService.new
   mailmatch.erase_all_matches
@@ -33,11 +37,14 @@ begin
   offset = 0
   batches = (professors_count / batch_dimension) + 1
   batches.times do
-    prof_batch = professor.get_professors_batch(batch_dimension, offset)
-    batch.look_for_emails(prof_batch)
+    begin
+      prof_batch = professor.get_professors_batch(batch_dimension, offset)
+      batch.look_for_emails(prof_batch)
+    rescue Exception => ex
+      print ex.message + "\n"
+    end
   end
-rescue Exception => ex
-  print "wrong password!\n"
+rescue Exception => ex  
   print ex.message + "\n"
 end
 
