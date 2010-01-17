@@ -8,7 +8,7 @@ class Query
   end
 
   def search_string
-    return @params.join(" ") + " email"
+    return @params.join(" ")
   end
 
 end

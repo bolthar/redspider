@@ -9,14 +9,13 @@ class Mailmatch
   belongs_to :professor
 
   def initialize(email)
-    @email = email
-    @score = 0
+    attribute_set(:email, email)
+    attribute_set(:score, 0)
   end
 
   def evaluate(person_data)
-    @score = 0
     person_data.each do |data|
-      @score += 1 if @email.match(/#{data}/i)
+      score += 1 if @email.match(/#{data}/i)
     end
   end
 
