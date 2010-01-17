@@ -15,7 +15,7 @@ class Mailmatch
 
   def evaluate(person_data)
     person_data.each do |data|
-      score += 1 if @email.match(/#{data}/i)
+      attribute_set(:score, attribute_get(:score) + 1) if @email.match(/#{data}/i)
     end
   end
 
