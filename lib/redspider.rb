@@ -16,4 +16,3 @@ max_score = matches.max { |a,b| a.score <=> b.score }.score
 matches.sort { |a,b| a.score <=> b.score }.each do |m|
   p "#{m.email}"
 end
-
