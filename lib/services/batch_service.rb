@@ -3,7 +3,6 @@ class BatchService
 
   def initialize
     @search = SearchService.new
-    @evaulator = EvaluatorService.new
     @professor = ProfessorService.new
   end
   
@@ -20,7 +19,8 @@ class BatchService
         #getting matches from google
         matches = @search.search(query)
         #giving scores to found matches
-        @evaulator.evaluate_matches!(matches, query)
+        matches.each { |m| m.evaluate(query.params)}
+        matches.sort! { |a,b| a.score <=> b.score }.reverse!
         @professor.save_matches(matches, prof)
         print "#{prof.name} #{prof.surname} - #{matches.length} found, best : #{matches.first.email}\n"
       end

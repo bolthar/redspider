@@ -10,7 +10,6 @@ require File.dirname(__FILE__) + "/domain/affiliation.rb"
 require File.dirname(__FILE__) + "/domain/query.rb"
 require File.dirname(__FILE__) + "/services/mechanize_service.rb"
 require File.dirname(__FILE__) + "/services/search_service.rb"
-require File.dirname(__FILE__) + "/services/evaluator_service.rb"
 require File.dirname(__FILE__) + "/services/professor_service.rb"
 require File.dirname(__FILE__) + "/services/mailmatch_service.rb"
 require File.dirname(__FILE__) + "/services/batch_service.rb"
@@ -25,6 +24,7 @@ rescue
 end
 begin
   #erases all previously found matches
+  print "Cleaning up old results...\n"
   mailmatch = MailmatchService.new
   mailmatch.erase_all_matches
   #starts with new search
@@ -40,6 +40,7 @@ begin
     begin
       prof_batch = professor.get_professors_batch(batch_dimension, offset)
       batch.look_for_emails(prof_batch)
+      offset += batch_dimension
     rescue Exception => ex
       print ex.message + "\n"
     end
