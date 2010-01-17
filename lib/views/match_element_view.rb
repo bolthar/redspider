@@ -2,12 +2,10 @@
 
 class MatchElementView < FreightElementView
 
-  def on_email_button_press_event
-    fire :selected
-  end
-
-  def on_score_button_press_event
-    fire :selected
+  signal :mail
+  
+  def on_email_clicked
+    fire :mail
   end
 
 end

@@ -33,13 +33,10 @@ class DetailsViewModel < FreightViewModel
     end
   end
 
-  def on_selected(value)
-    @selected = value
-    @view.update
-  end
-
-  def on_mail
-    p "mail"
+  def on_mail(match)
+    Thread.new do
+      system("evolution mailto:#{match.email}?cc=info@kth.se\\&subject=Contact")
+    end
   end
 
  

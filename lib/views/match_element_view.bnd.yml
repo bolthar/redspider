@@ -1,6 +1,6 @@
 
 email:
-  property : text
+  property : label
   path     : value.email
 
 score:

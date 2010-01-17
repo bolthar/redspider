@@ -4,18 +4,13 @@ class DetailsView < FreightView
 
   signal :search
   signal :mail
-  signal :selected
   
   def on_search_clicked
     fire :search
   end
 
-  def on_mail_clicked
-    fire :mail
-  end
-
-   def matches_on_selected(value)
-    fire :selected, value
+   def matches_on_mail(value)
+    fire :mail, value
   end
 
 end

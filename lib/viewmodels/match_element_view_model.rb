@@ -2,4 +2,15 @@
 
 class MatchElementViewModel < FreightElementViewModel
 
+  signal :mail
+
+  def color
+    return "0000FF" if @selected
+    return "000000"
+  end
+
+  def on_mail
+    fire :mail, @value
+  end
+
 end
