@@ -11,5 +11,9 @@ class Professor
   has n, :affiliations
   has n, :mailmatches
 
+  def affiliation
+    return affiliations.first
+  end
+
 
 end
