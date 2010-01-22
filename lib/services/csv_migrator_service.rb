@@ -3,7 +3,7 @@
 class CsvMigratorService
 
   def load_professors(filepath)
-    File.open(filepath).lines.each do |line|
+    File.readlines(filepath).each do |line|
       data = line.split("\t")
       professor               = Professor.new
       professor.id            = data[0].gsub("\"","").to_i
@@ -16,7 +16,7 @@ class CsvMigratorService
   end
 
   def load_affiliations(filepath)
-    File.open(filepath).lines.each do |line|
+    File.readlines(filepath).each do |line|
       data = line.split("\t")
       affiliation = Affiliation.new
       professor   = Professor.get(data[0].gsub("\"","").to_i)
